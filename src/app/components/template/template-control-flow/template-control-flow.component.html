@@ -1,0 +1,111 @@
+<p>Welcome to template-control-flow works!</p>
+<h2>IF</h2>
+
+@if (isTrue) { Estado On } @else{ Estado Off }
+
+<ng-container *ngIf="isTrue; else isFalse"> ng-container show </ng-container>
+<br />
+<ng-template #isFalse> <p>ng-container hide</p> </ng-template>
+
+@if(loadingData$ | async; as data){
+<ul>
+  @for(item of data; track item){
+  <li>{{ item }}</li>
+  }
+</ul>
+}@else{
+<p>Carregando ...</p>
+
+}
+
+<br />
+
+@for(item of loadingData$ | async; track item){
+<li>{{ item }}</li>
+}
+
+<br />
+
+<p>Angular old for version</p>
+<ng-container *ngFor="let item of loadingData$ | async; trackBy: trackByFn">
+  <li>{{ item }}</li>
+</ng-container>
+
+<h2>For e seus valores</h2>
+
+@for( item of itens; track item.name; let i =$index; let c = $count; let e =
+$even; let f = $first; let l = $last; let o = $odd; ){
+
+<p>{{ item.name }}</p>
+<p>{{ i }} - index</p>
+<p>{{ c }} - count</p>
+<p>{{ e }} - even</p>
+<p>{{ f }} - first</p>
+<p>{{ l }} - last</p>
+<p>{{ o }} - odd</p>
+
+}
+
+<br />
+
+<h2>Old Angular For e seus valores</h2>
+<ng-container
+  *ngFor="
+    let item of itens;
+    let i = index;
+    let c = count;
+    let e = even;
+    let f = first;
+    let l = last;
+    let o = odd
+  "
+>
+  <p>{{ item.name }}</p>
+  <p>{{ i }} - index</p>
+  <p>{{ c }} - count</p>
+  <p>{{ e }} - even</p>
+  <p>{{ f }} - first</p>
+  <p>{{ l }} - last</p>
+  <p>{{ o }} - odd</p>
+</ng-container>
+
+<input #name type="text" />
+<button (click)="addNewName(name.value)">Add Name</button>
+
+<ul>
+  @for(item of itens; track item.name){
+  <li>{{ item.name }}</li>
+  } @empty {
+  <li>Nao contem valores</li>
+  }
+</ul>
+
+<ul>
+  <ng-container *ngIf="listItem.length === 0; else itensExist">
+    <li>Nao contem valores</li>
+  </ng-container>
+  <ng-template #itensExist>
+    <ng-container *ngFor="let item of itens">
+      <li>
+        {{ item.name }}
+      </li>
+    </ng-container>
+  </ng-template>
+</ul>
+
+@switch (switchCondition) { @case('A'){
+<p>Sim sua letra e: A</p>
+} @case ('B') {
+<p>Sim sua letra e: B</p>
+} @default {
+<p>Dados nao foram encontrados</p>
+}}
+
+<ng-container [ngSwitch]="switchCondition">
+  <ng-container *ngSwitchCase="'A'">
+    <p>Sim sua letra e: A</p>
+  </ng-container>
+  <ng-container *ngSwitchDefault>
+    <p>Dados nao foram encontrados</p>
+  </ng-container>
+</ng-container>

@@ -1,0 +1,49 @@
+<h2>Hello {{ name == "Elson" ? "My Dear " + name : name }}</h2>
+<p>You are next completing {{ nextAge() }}</p>
+<p>but you have {{ sum(nextAge(), -1) }}</p>
+<p>template-binding works!</p>
+
+<h2>property bind</h2>
+
+<button [disabled]="isDisabled">Click me</button>
+<br />
+<img [src]="srcImg" [alt]="course" [title]="course" />
+<p [attr.title]="name" [attr.aria-label]="name">{{ name }}</p>
+<p [class.background-red]="name == 'Elson'">
+  {{ age }}
+</p>
+
+<p [style.text-decoration]="isTextDecoration">
+  {{ age }}
+</p>
+
+<h2>event bind</h2>
+
+<button (click)="sumAge()">+</button>
+<span> {{ age }} </span>
+<button (click)="subAge()">-</button>
+<br />
+<input (keydown.shift.t)="onKeyDown($event)" />
+
+<div
+  style="background: red; width: 300px; height: 300px; margin-top: 10px"
+  (mousemove)="onMouseMove($event)"
+></div>
+
+<h2>two way bind</h2>
+
+<input [(ngModel)]="name" />
+<p>{{ name }}</p>
+
+<p [ngClass]="{ 'background-red': age > 35 }">Classes Condicionais</p>
+
+<div
+  [ngStyle]="{
+    color: age > 20 ? 'green' : 'red',
+    'font-size': age > 33 ? '30px' : '20px'
+  }"
+>
+  Estilo Dinamico
+</div>
+
+<app-template-variables></app-template-variables>

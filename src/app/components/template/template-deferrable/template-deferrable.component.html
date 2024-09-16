@@ -1,0 +1,22 @@
+<h2>Deferrable Views</h2>
+<!-- @defer(on idle){ -->
+<!-- @defer(on viewport){-->
+<p>{{ "mostrar a view quando chega no trecho do viewport" }}</p>
+<!-- @defer{ -->
+<!-- @defer (on timer(5s)){ -->
+<!-- @defer (on hover){ -->
+<!-- @defer (on imediate){ -->
+<!-- @defer (on interaction()){ -->
+<!-- @defer (on interaction(trigger); prefetch on timer(5s)){ -->
+<p>{{ "carregar apos 5s e apos interacao de 5s aparece" }}</p>
+<h4 #trigger>Click me Deffer</h4>
+
+@defer ( prefetch on timer(10s); on interaction(trigger);){
+<p>template-deferrable works!</p>
+}@placeholder() {
+<p>Mostrar antes de carregar algo.</p>
+}@loading() {
+<p>loading...</p>
+}@error {
+<p>Loading failed</p>
+}
